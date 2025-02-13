@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         calculatorViewModel= ViewModelProvider(this).get(CalculatorViewModel::class.java)
-
+        binding.btn.setOnClickListener {
+            val num1=binding.edt1.text.toString().toIntOrNull()?:0 //if not int or null value is given then value=0
+            val num2=binding.edt2.text.toString().toIntOrNull()?:0
+            val result=calculatorViewModel.add(num1,num2)
+            binding.result.text="Result: ${result.result}"
+        }
     }
 }
